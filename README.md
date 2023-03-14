@@ -93,6 +93,58 @@ To view the logs for your production Spec deployment:
 $ spec logs 
 ```
 
+# Running the client from source
+
+#### 1) *Outside* of this project, clone the spec client repo into another folder
+
+```bash
+$ git clone https://github.com/spec-dev/spec client && cd client
+```
+
+#### 2) Install all the things
+```bash
+$ npm install
+```
+
+#### 3) Install your custom handler
+```bash
+$ npm install file:../spec/.spec/handlers
+```
+
+#### 4) Set key environment variables
+
+Do this however you typically would for a project (I personlly just use a .env file and activate them)
+
+```bash
+export DB_NAME=station
+export DB_USER=spec
+export DEBUG=true
+export PROJECT_ID=zkkkdvkkmcgtxtqgxrog
+export PROJECT_API_KEY=<PROJECT_API_KEY>
+export SPEC_CONFIG_DIR=/full/path/to/spec/.spec
+```
+
+#### 5) Make sure the spec DB user exists
+```bash
+createuser spec
+```
+
+#### 5) Init DB for usage with Spec
+```bash
+$ psql -d station -f ./db/init.sql
+```
+
+#### 5) Make sure bin scripts are runnable
+```bash
+$ chmod u+x bin/*
+```
+
+#### 6) Start Spec
+
+```bash
+$ bin/run
+```
+
 # Other Helpful Commands
 
 Get back to the dashboard:
