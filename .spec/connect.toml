@@ -1,0 +1,6 @@
+# Local database
+[local]
+name = ''
+port = 5432
+user = ''
+password = ''
