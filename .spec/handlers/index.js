@@ -1,5 +1,5 @@
 /**
- * Mark Actions as successful upon receiving the "Execute" contract event.
+ * Mark Actions as successful upon receiving the "Success" contract event.
  */
 async function onSuccessEvent(event, db, logger) {
   const { actionHash } = event.data;
