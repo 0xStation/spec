@@ -1,3 +1,5 @@
+const report = require('./reporter')
+
 /**
  * Mark Actions as successful upon receiving the "Success" contract event.
  */
@@ -20,6 +22,9 @@ async function onSuccessEvent(event, db, logger) {
         }.`
       )
     : logger.error(`No Action record found for (actionHash=${actionHash}).`);
+
+  // TODO: Report results to webhook
+  await report({ key: 'value '}, logger)
 }
 
 /**

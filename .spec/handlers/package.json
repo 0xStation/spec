@@ -1,4 +1,7 @@
 {
     "name": "@spec.custom/handlers",
-    "main": "index.js"
+    "main": "index.js",
+    "dependencies": {
+        "node-fetch": "^2.6.6"
+    }
 }
