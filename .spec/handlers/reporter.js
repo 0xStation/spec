@@ -30,7 +30,7 @@ async function report(payload, logger) {
         return
     }
     
-    const body = stringifyPayload(payload)
+    const body = stringify(payload)
     if (!body) {
         logger.error(`Error stringifying payload`, payload)
         return
