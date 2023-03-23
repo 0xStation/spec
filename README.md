@@ -152,3 +152,10 @@ Get back to the dashboard:
 ```bash
 $ spec open
 ```
+
+# Debugging
+
+Can you run the following?
+```bash
+$ docker compose -f test.yaml up
+```
