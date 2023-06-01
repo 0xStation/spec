@@ -17,6 +17,8 @@ index.ts
 bin/
 *.sh
 deno.lock
+package-lock.json
+./package.json
 
 # Runtime data
 pids
