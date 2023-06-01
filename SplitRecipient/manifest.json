@@ -1,0 +1,8 @@
+{
+    "namespace": "station",
+    "name": "SplitRecipient",
+    "version": "0.0.1",
+    "displayName": "Split Recipients",
+    "description": "The Station representation of a 0xSplits recipient.",
+    "chains": [1, 5, 137]
+}

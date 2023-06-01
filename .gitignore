@@ -1,6 +1,25 @@
-*.env
+.spec/connect.toml
+
 node_modules/
 **/node_modules/
+**/dist/
+**/dist-dev/
+**/dist-report/
 npm-debug.log*
+.DS_Store
+*.pem
+*.env
+typings/
+*.tsbuildinfo
 .npm
-.spec/connect.toml
+*.sql
+index.ts
+bin/
+*.sh
+deno.lock
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
