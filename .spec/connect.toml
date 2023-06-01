@@ -2,5 +2,6 @@
 [local]
 name = 'station'
 port = 5432
-user = 'cswenberg'
+host = 'localhost'
+user = 'benwhittle'
 password = ''

@@ -1,5 +1,0 @@
-{
-  "dependencies": {
-    "@spec.custom/handlers": "file:.spec/handlers"
-  }
-}

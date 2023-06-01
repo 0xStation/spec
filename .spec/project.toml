@@ -1,8 +1,22 @@
 # = Live Objects (Sources) ------------------------------
 
+[objects.Membership]
+id = 'station.Membership@0.0.1'
 
 # = Live Columns (Outputs) ------------------------------
 
+[tables.public.Membership]
+contractAddress = 'Membership.contractAddress'
+tokenId = 'Membership.tokenId'
+chainId = 'Membership.chainId'
+ownerAddress = 'Membership.ownerAddress'
+tbaAddress = 'Membership.tbaAddress'
+updatedAt = 'Membership.blockTimestamp'
+joinedAt = 'Membership.joinedAt'
+blockNumber = 'Membership.blockNumber'
 
 # = Links & Filters --------------------------------------
 
+[[objects.Membership.links]]
+table = 'public.Membership'
+uniqueBy = [ 'contractAddress', 'tokenId', 'chainId' ]
