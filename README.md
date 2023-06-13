@@ -101,3 +101,9 @@ Test a Live Object on its entire history of input data.
 ```bash
 $ spec test object Membership --all-time
 ```
+
+### Random Tips
+
+* Since the "block-related properties" of your live object get automatically set for you before your event handlers run, you should be able to reference them in your handlers when needed as `this.blockNumber`, `this.blockHash`, `this.blockTimestamp`, and `this.chainId`, respectively.
+
+* If you ever need to return early from a handler in a "do nothing" case, make sure to `return false` -- this tells our live object runner not to try and "auto-save" the live object class after the handler function finishes.
