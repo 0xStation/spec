@@ -42,7 +42,7 @@ $ spec use project <nsp>/<name>
 
 ### Registering Contracts
 
-Walkthrough: ...
+Walkthrough: https://www.loom.com/share/9afb941219914926ad1567568405022e?sid=7f48eb70-f313-4ddd-bb31-cd50866151a7
 
 Usage:
 
