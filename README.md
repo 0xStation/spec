@@ -40,6 +40,19 @@ $ spec use project <nsp>/<name>
 
 4) Make sure your local postgres instance is running on localhost:5432
 
+### Registering Contracts
+
+Walkthrough: ...
+
+Usage:
+
+```bash
+$ spec register contracts 0x123,0x456,0x789 \
+    --chain 5 \
+    --group station.Membership \
+    --abi path/to/abi.json
+```
+
 ### Testing Live Objects
 
 It's easy to test your Live Objects locally using live data from Spec's event network.
