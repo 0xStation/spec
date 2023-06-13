@@ -36,7 +36,7 @@ class Membership extends LiveObject {
         this.ownerAddress = event.data.to
         this.tbaAddress = null // v2
         if (event.data.from === ZERO_ADDRESS) { // mint
-            this.joinedAt = event.origin.blockTimestamp
+            this.joinedAt = this.blockTimestamp
         }
     }
 }
