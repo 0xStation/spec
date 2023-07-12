@@ -5,7 +5,6 @@ import {
   Event,
   OnEvent,
   Address,
-  BigInt,
   String,
 } from "@spec.dev/core";
 
@@ -18,15 +17,15 @@ import {
 class TokenOperator extends LiveObject {
   // The membership contract.
   @Property()
-  contractAddress: Address;
+  contractAddress: Address
 
   // The token operator address.
   @Property()
-  operatorAddress: Address;
+  operatorAddress: Address
 
   // The permissions of the token operator.
   @Property()
-  permissions: String;
+  permissions: String
 
   // ==== Event Handlers ===================
 
