@@ -30,7 +30,7 @@ class TokenOperator extends LiveObject {
   // ==== Event Handlers ===================
 
   @OnEvent("station.Membership.Permit")
-  onTransfer(event: Event) {
+  onPermit(event: Event) {
     this.contractAddress = event.origin.contractAddress;
     this.operatorAddress = event.data.account;
     this.permissions = event.data.permissions;

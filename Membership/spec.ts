@@ -39,6 +39,11 @@ class Membership extends LiveObject {
             this.joinedAt = this.blockTimestamp
         }
     }
+
+    @OnEvent('station.Membership.MembershipCreated')
+    onMembershipCreated(event: Event) {
+      this.addContractToGroup(event.data.membership, 'station.Membership')
+    }
 }
 
 export default Membership
