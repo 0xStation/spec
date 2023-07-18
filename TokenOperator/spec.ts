@@ -5,7 +5,7 @@ import {
   Event,
   OnEvent,
   Address,
-} from "@spec.dev/core";
+} from "@spec.dev/core"
 
 /**
  * A TokenOperator on Station.
@@ -16,24 +16,24 @@ import {
 class TokenOperator extends LiveObject {
   // The membership contract.
   @Property()
-  contractAddress: Address;
+  contractAddress: Address
 
   // The token operator address.
   @Property()
-  operatorAddress: Address;
+  operatorAddress: Address
 
   // The permissions of the token operator.
   @Property()
-  permissions: string;
+  permissions: string
 
   // ==== Event Handlers ===================
 
   @OnEvent("station.Membership.Permit")
   onPermit(event: Event) {
-    this.contractAddress = event.origin.contractAddress;
-    this.operatorAddress = event.data.account;
-    this.permissions = event.data.permissions;
+    this.contractAddress = event.origin.contractAddress
+    this.operatorAddress = event.data.account
+    this.permissions = event.data.permissions
   }
 }
 
-export default TokenOperator;
+export default TokenOperator
