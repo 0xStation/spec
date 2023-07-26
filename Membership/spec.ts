@@ -8,7 +8,9 @@ import {
   BigInt,
   Timestamp,
   ZERO_ADDRESS,
+  ERC6551Registry,
 } from "@spec.dev/core"
+import { REGISTRY_IMPLEMENTATION } from "./constants.ts"
 
 /**
  * A Membership NFT on Station.
@@ -40,13 +42,16 @@ class Membership extends LiveObject {
   // ==== Event Handlers ===================
 
   @OnEvent("station.Membership.Transfer")
-  onTransfer(event: Event) {
+  async onTransfer(event: Event) {
     this.contractAddress = event.origin.contractAddress
     this.tokenId = BigInt.from(event.data.tokenId)
     this.ownerAddress = event.data.to
-    this.tbaAddress = null // v2
+
+    // Resolve TBA address from ERC-6551 registry.
+    await this._resolveTbaAddress()
+
+    // Mark joined only on mints.
     if (event.data.from === ZERO_ADDRESS) {
-      // mint
       this.joinedAt = this.blockTimestamp
     }
   }
@@ -54,6 +59,18 @@ class Membership extends LiveObject {
   @OnEvent("station.MembershipFactory.MembershipCreated")
   onMembershipCreated(event: Event) {
     this.addContractToGroup(event.data.membership, "station.Membership")
+  }
+
+  // ==== HELPERS ==========================
+
+  async _resolveTbaAddress() {
+    this.tbaAddress = await new ERC6551Registry(this.chainId).account(
+      REGISTRY_IMPLEMENTATION,
+      this.chainId,
+      this.contractAddress,
+      this.tokenId,
+      0
+    )
   }
 }
 
