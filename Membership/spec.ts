@@ -47,12 +47,11 @@ class Membership extends LiveObject {
     this.tokenId = BigInt.from(event.data.tokenId)
     this.ownerAddress = event.data.to
 
-    // Resolve TBA address from ERC-6551 registry.
-    await this._resolveTbaAddress()
 
-    // Mark joined only on mints.
+    // Mark joinedAt and resolve TBA address from ERC6551Registry only on mints.
     if (event.data.from === ZERO_ADDRESS) {
       this.joinedAt = this.blockTimestamp
+      await this._resolveTbaAddress()
     }
   }
 
