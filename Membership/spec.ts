@@ -62,7 +62,8 @@ class Membership extends LiveObject {
   // ==== HELPERS ==========================
 
   async _resolveTbaAddress() {
-    this.tbaAddress = await new ERC6551Registry(this.chainId).account(
+    const registryContract = new ERC6551Registry(this.chainId)
+    this.tbaAddress = await registryContract.account(
       REGISTRY_IMPLEMENTATION,
       this.chainId,
       this.contractAddress,
