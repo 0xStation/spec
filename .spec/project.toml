@@ -15,6 +15,9 @@ updatedAt = 'Membership.blockTimestamp'
 joinedAt = 'Membership.joinedAt'
 blockNumber = 'Membership.blockNumber'
 
+[defaults.public.TokenOperator]
+id = 'uuid()'
+
 # = Links & Filters --------------------------------------
 
 [[objects.Membership.links]]
