@@ -1,8 +1,0 @@
-{
-    "namespace": "station",
-    "name": "SplitRecipientWithdrawalEvent",
-    "version": "0.0.1",
-    "displayName": "Split Recipient Withdrawals",
-    "description": "The Station representation of a withdrawal event on 0xSplits.",
-    "chains": [1, 5, 137]
-}

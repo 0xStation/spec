@@ -1,8 +1,0 @@
-{
-    "namespace": "station",
-    "name": "SplitRecipientToken",
-    "version": "0.0.1",
-    "displayName": "Split Recipient Tokens",
-    "description": "The Station representation of a token owned by a 0xSplits recipient.",
-    "chains": [1, 5, 137]
-}
