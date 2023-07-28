@@ -1,5 +1,5 @@
 {
-    "name": "@spec.custom/hooks",
+    "name": "@spec.custom/handlers",
     "main": "index.js",
     "dependencies": {
         "node-fetch": "^2.6.6"
