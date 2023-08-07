@@ -7,7 +7,7 @@ import {
   Address,
   BigInt,
   Timestamp,
-  ZERO_ADDRESS,
+  isNullAddress,
   ERC6551Registry,
 } from "@spec.dev/core"
 import { REGISTRY_IMPLEMENTATION } from "./constants.ts"
@@ -48,7 +48,7 @@ class Membership extends LiveObject {
     this.ownerAddress = event.data.to
 
     // Mark joinedAt and resolve TBA address from ERC6551Registry only on mints.
-    if (event.data.from === ZERO_ADDRESS) {
+    if (isNullAddress(event.data.from)) {
       this.joinedAt = this.blockTimestamp
       await this._resolveTbaAddress()
     }
@@ -58,7 +58,7 @@ class Membership extends LiveObject {
   onMembershipCreated(event: Event) {
     this.addContractToGroup(event.data.membership, "station.Membership")
   }
-
+ 
   // ==== HELPERS ==========================
 
   async _resolveTbaAddress() {
