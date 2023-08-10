@@ -1,4 +1,4 @@
-const relayEventToWebhook = require("./reporter");
+const relayEventToWebhook = require("./reporter")
 
 /**
  * Process Station metadata queue item.
@@ -11,9 +11,9 @@ async function processOnChainItem(event, db, logger) {
     eventSignature: event.origin.signature,
     logIndex: event.origin.logIndex,
     data: event.data,
-  };
+  }
 
-  await relayEventToWebhook(payload, logger);
+  await relayEventToWebhook(payload, logger)
 }
 
 /**
@@ -21,6 +21,6 @@ async function processOnChainItem(event, db, logger) {
  */
 const eventHandlers = {
   "station.Membership.Transfer": processOnChainItem,
-};
+}
 
-module.exports = eventHandlers;
+module.exports = eventHandlers
