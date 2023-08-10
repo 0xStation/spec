@@ -1,12 +1,26 @@
-const relayEventToWebhook = require('./reporter')
+const relayEventToWebhook = require("./reporter");
 
+async function processOnChainItem(event, db, logger) {
+  delete event.data.contractAddress;
+  delete event.data.transactionHash;
+
+  const payload = {
+    chainId: event.origin.chainId,
+    transactionHash: event.origin.transactionHash,
+    contractAddress: event.origin.contractAddress,
+    eventSignature: event.origin.signature,
+    logIndex: event.origin.logIndex,
+    data: event.data,
+  };
+
+  await relayEventToWebhook(payload, logger);
+}
 /**
  * Relay Membership Transfer events to our custom webhook.
  */
-async function onMembershipTransfer(event, db, logger) {    
-    await relayEventToWebhook(event, logger)
-
-    /*
+async function onMembershipTransfer(event, db, logger) {
+  await relayEventToWebhook(event, logger);
+  /*
         Anything else you wanna do that leverages the 'db' object:
         -----------------------------------------------------------
 
@@ -22,7 +36,7 @@ async function onMembershipTransfer(event, db, logger) {
  * Tap into any Spec event.
  */
 const eventHandlers = {
-    'station.Membership.Transfer': onMembershipTransfer,
-}
-  
-module.exports = eventHandlers
+  "station.Membership.Transfer": processOnChainItem,
+};
+
+module.exports = eventHandlers;
