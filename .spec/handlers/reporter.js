@@ -4,7 +4,6 @@ const fetch = require("node-fetch")
  * Webhook HTTP request variables.
  */
 const methods = { POST: "POST" }
-const webhookUrl = process.env.STATION_WEBHOOK_URL
 const headers = {
   "Content-Type": "application/json",
   Authorization: `Bearer ${process.env.STATION_INFRA_API_KEY}`,
@@ -24,12 +23,7 @@ function stringify(payload) {
 /**
  * Hit a webhook to report something interesting.
  */
-async function report(payload, logger) {
-  if (!webhookUrl) {
-    logger.error(`Webhook url not configured...`)
-    return
-  }
-
+async function report(url, payload, logger) {
   const body = stringify(payload)
   if (!body) {
     logger.error(`Error stringifying payload`, payload)
@@ -38,7 +32,7 @@ async function report(payload, logger) {
 
   let resp
   try {
-    resp = await fetch(webhookUrl, {
+    resp = await fetch(url, {
       method: methods.POST,
       body: body,
       headers,

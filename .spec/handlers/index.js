@@ -13,7 +13,12 @@ async function processOnChainItem(event, db, logger) {
     data: event.data,
   }
 
-  await relayEventToWebhook(payload, logger)
+  // API path for the webhook
+  const API_PATH = "api/v1/processQueueItem"
+  // staging
+  await relayEventToWebhook(`dev.groupos.xyz/${API_PATH}`, payload, logger)
+  // production
+  await relayEventToWebhook(`groupos.xyz/${API_PATH}`, payload, logger)
 }
 
 /**
