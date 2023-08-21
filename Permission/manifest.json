@@ -1,0 +1,12 @@
+{
+  "namespace": "station",
+  "name": "Permission",
+  "version": "0.0.1",
+  "displayName": "Station Permissions",
+  "description": "A permission record marks the permissions a particular ownerAddress has over a particular collection made unique by chainId and contractAddress.",
+  "chains": [
+    1,
+    5,
+    137
+  ]
+}
