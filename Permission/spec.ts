@@ -11,7 +11,7 @@ import {
  * A TokenOperator on Station.
  */
 @Spec({
-  uniqueBy: ["contractAddress", "operatorAddress", "chainId"],
+  uniqueBy: ["chainId", "contractAddress", "accountAddress", "operation"],
 })
 class Permission extends LiveObject {
   // The membership contract.
