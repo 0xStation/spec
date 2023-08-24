@@ -3,6 +3,9 @@
 [objects.Membership]
 id = 'station.Membership@0.0.1'
 
+[objects.PointsBalance]
+id = 'station.PointsBalance@0.0.1'
+
 # = Live Columns (Outputs) ------------------------------
 
 [tables.public.Membership]
@@ -15,8 +18,20 @@ updatedAt = 'Membership.blockTimestamp'
 joinedAt = 'Membership.joinedAt'
 blockNumber = 'Membership.blockNumber'
 
+[tables.public.PointsBalance]
+contractAddress = 'PointsBalance.contractAddress'
+ownerAddress = 'PointsBalance.ownerAddress'
+chainId = 'PointsBalance.chainId'
+balance = 'PointsBalance.balance'
+blockNumber = 'PointsBalance.blockNumber'
+updatedAt = 'PointsBalance.blockTimestamp'
+
 # = Links & Filters --------------------------------------
 
 [[objects.Membership.links]]
 table = 'public.Membership'
 uniqueBy = [ 'contractAddress', 'tokenId', 'chainId' ]
+
+[[objects.PointsBalance.links]]
+table = 'public.PointsBalance'
+uniqueBy = [ 'contractAddress', 'ownerAddress', 'chainId' ]
