@@ -35,7 +35,10 @@ class PointsBalance extends LiveObject {
   async onTransfer(event: Event) {
     this.contractAddress = event.origin.contractAddress
     this.ownerAddress = event.data.to
-    this.balance += BigInt.from(event.data.amount)
+
+    if (!isNullAddress(event.data.to)) {
+      this.balance += BigInt.from(event.data.amount)
+    }
 
     // Mark firstMintAt and
     if (!isNullAddress(event.data.from)) {
