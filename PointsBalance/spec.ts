@@ -6,15 +6,15 @@ import {
   OnEvent,
   Address,
   BigInt,
-  Timestamp,
   isNullAddress,
+  saveAll,
 } from "@spec.dev/core"
 
 /**
  * A Points balance on Station.
  */
 @Spec({
-  uniqueBy: ["chainId", "contractAddress", "accountAddress"]
+  uniqueBy: ["chainId", "contractAddress", "ownerAddress"]
 })
 class PointsBalance extends LiveObject {
   // The membership contract.
@@ -34,17 +34,39 @@ class PointsBalance extends LiveObject {
   @OnEvent("station.Points.Transfer")
   async onTransfer(event: Event) {
     this.contractAddress = event.origin.contractAddress
-    this.ownerAddress = event.data.to
+    const value = BigInt.from(event.data.value)
 
-    if (!isNullAddress(event.data.to)) {
-      this.balance += BigInt.from(event.data.amount)
-    }
+    const updatedBalances = (await Promise.all([
+      this._applyAmountToBalance(event.data.to, value),
+      this._applyAmountToBalance(event.data.from, value.times(-1)),
+    ])).filter(v => !!v)
 
-    // Mark firstMintAt and
-    if (!isNullAddress(event.data.from)) {
-      /// @todo how do I decrease the balance of the record matching `event.data.from`?
-    }
+    await saveAll(...updatedBalances)
   } 
+
+  async _applyAmountToBalance(
+    ownerAddress: Address, 
+    value: BigInt,
+  ): Promise<PointsBalance | null> {
+    if (isNullAddress(ownerAddress)) return null
+
+    // Instantiate new class instance to reference.
+    const pointsBalance = this.new(PointsBalance, {
+      chainId: this.chainId,
+      contractAddress: this.contractAddress,
+      ownerAddress,
+    })
+    
+    // Load in existing property values if the record exists.
+    const exists = await pointsBalance.load()
+    if (!exists) {
+      pointsBalance.balance = BigInt.from(0)
+    }
+
+    // Update balance.
+    pointsBalance.balance = pointsBalance.balance.plus(value)
+    return pointsBalance
+  }
 }
 
 export default PointsBalance
