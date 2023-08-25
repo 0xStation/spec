@@ -35,3 +35,8 @@ uniqueBy = [ 'contractAddress', 'tokenId', 'chainId' ]
 [[objects.PointsBalance.links]]
 table = 'public.PointsBalance'
 uniqueBy = [ 'contractAddress', 'ownerAddress', 'chainId' ]
+
+# = Defaults ----------------------------------------------
+
+[defaults.public.PointsBalance]
+id = 'uuid()'
