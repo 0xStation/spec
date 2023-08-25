@@ -52,7 +52,6 @@ class PointsBalance extends LiveObject {
 
     // Instantiate new class instance to reference.
     const pointsBalance = this.new(PointsBalance, {
-      chainId: this.chainId,
       contractAddress: this.contractAddress,
       ownerAddress,
     })
