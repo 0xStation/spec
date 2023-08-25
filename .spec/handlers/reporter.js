@@ -40,8 +40,15 @@ async function report(url, payload, logger) {
   } catch (err) {
     logger.error(`Unexpected error calling webhook: ${stringify(err)}`)
   }
+  
   if (resp?.status !== 200) {
-    logger.error(`Webhook failed with response code ${resp?.status}`)
+    let data
+    try {
+      data = await resp.json()
+    } catch (e) {
+      data = {}
+    }
+    logger.error(`Webhook failed with response code ${resp?.status}: ${stringify(data || {})}`)
   }
 
   return resp

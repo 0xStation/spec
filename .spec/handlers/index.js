@@ -26,7 +26,7 @@ async function processOnChainItem(event, db, logger) {
  */
 const eventHandlers = {
   "station.Membership.Transfer@0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": processOnChainItem,
-  "station.PointsBalance.Transfer@0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": processOnChainItem,
+  "station.Points.Transfer@0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": processOnChainItem,
 }
 
 module.exports = eventHandlers
