@@ -5,6 +5,7 @@ const relayEventToWebhook = require("./reporter")
  */
 async function processOnChainItem(event, db, logger) {
   const payload = {
+    specEventName: event.name,
     chainId: Number(event.origin.chainId),
     transactionHash: event.origin.transactionHash,
     contractAddress: event.origin.contractAddress,
