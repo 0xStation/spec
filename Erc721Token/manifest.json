@@ -1,0 +1,12 @@
+{
+  "namespace": "station",
+  "name": "Erc721Token",
+  "version": "0.0.1",
+  "displayName": "Station ERC721 Tokens",
+  "description": " A ERC 721 Token on Station.",
+  "chains": [
+    1,
+    5,
+    137
+  ]
+}
