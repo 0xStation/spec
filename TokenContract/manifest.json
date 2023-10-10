@@ -1,0 +1,12 @@
+{
+  "namespace": "station",
+  "name": "TokenContract",
+  "version": "0.0.1",
+  "displayName": "Token contract",
+  "description": "A contract deployed on Station's 0xRails framework.",
+  "chains": [
+    1,
+    5,
+    137
+  ]
+}

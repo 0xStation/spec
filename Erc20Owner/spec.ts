@@ -14,12 +14,12 @@ import {
  * An ownership over ERC20s on Station.
  */
 @Spec({
-  uniqueBy: ["chainId", "contractAddress", "ownerAddress"],
+  uniqueBy: ["chainId", "tokenContractAddress", "ownerAddress"],
 })
 class Erc20Owner extends LiveObject {
-  // The membership contract.
+  // The erc20 contract.
   @Property()
-  contractAddress: Address;
+  tokenContractAddress: Address;
 
   // The account with a balance.
   @Property()
@@ -32,7 +32,7 @@ class Erc20Owner extends LiveObject {
   // ==== Event Handlers ===================
   @OnEvent("station.Erc20Owner.Transfer")
   async onTransfer(event: Event) {
-    this.contractAddress = event.origin.contractAddress;
+    this.tokenContractAddress = event.origin.contractAddress;
     const value = BigInt.from(event.data.value);
 
     const updatedBalances = (
@@ -53,7 +53,7 @@ class Erc20Owner extends LiveObject {
 
     // Instantiate new class instance to reference.
     const erc20Owner = this.new(Erc20Owner, {
-      contractAddress: this.contractAddress,
+      contractAddress: this.tokenContractAddress,
       ownerAddress,
     });
 
