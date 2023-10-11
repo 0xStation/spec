@@ -9,6 +9,7 @@ import {
 
 /**
  * A Token contract on Station.
+ * Responsible for creating new TokenContract records, as well as adding new contracts to the appropriate group.
  */
 @Spec({
   uniqueBy: ["contractAddress", "chainId"],

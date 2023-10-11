@@ -28,7 +28,7 @@ class Erc721Token extends LiveObject {
   ownerAddress: Address;
 
   // ==== Event Handlers ===================
-  @OnEvent("station.Erc721Token.Transfer")
+  @OnEvent("station.ERC721.Transfer")
   onTransfer(event: Event) {
     this.tokenContractAddress = event.origin.contractAddress;
     this.tokenId = BigInt.from(event.data.tokenId);

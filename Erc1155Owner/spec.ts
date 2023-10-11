@@ -29,7 +29,7 @@ class Erc1155Owner extends LiveObject {
 
   // ==== Event Handlers ===================
 
-  @OnEvent("station.Erc1155Token.Transfer")
+  @OnEvent("station.ERC1155.Transfer")
   onTransfer(event: Event) {
     this.tokenContractAddress = event.origin.contractAddress;
     this.tokenId = BigInt.from(event.data.tokenId);
