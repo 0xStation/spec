@@ -20,14 +20,22 @@ class TokenContract extends LiveObject {
 
   // ==== Event Handlers ===================
 
-  @OnEvent("station.Membership.Transfer")
-  onTransfer(event: Event) {
-    this.contractAddress = event.origin.contractAddress;
+  // MembershipFactory?
+  @OnEvent("station.TokenFactory.ERC20Created")
+  onErc20Created(event: Event) {
+    this.addContractToGroup(event.data.erc20, "station.ERC20");
   }
 
-  @OnEvent("station.MembershipFactory.MembershipCreated")
-  onMembershipCreated(event: Event) {
-    this.addContractToGroup(event.data.membership, "station.Membership");
+  // MembershipFactory?
+  @OnEvent("station.TokenFactory.ERC721Created")
+  onErc721Created(event: Event) {
+    this.addContractToGroup(event.data.erc721, "station.ERC721");
+  }
+
+  // MembershipFactory?
+  @OnEvent("station.TokenFactory.ERC1155Created")
+  onErc1155Created(event: Event) {
+    this.addContractToGroup(event.data.erc1155, "station.ERC1155");
   }
 }
 
