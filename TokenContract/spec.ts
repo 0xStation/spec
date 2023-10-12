@@ -5,6 +5,7 @@ import {
   Event,
   OnEvent,
   Address,
+  BeforeAll,
 } from "@spec.dev/core";
 
 /**
@@ -20,6 +21,11 @@ class TokenContract extends LiveObject {
   contractAddress: Address;
 
   // ==== Event Handlers ===================
+
+  @BeforeAll()
+  setCommonProperties(event: Event) {
+    this.contractAddress = event.data.token
+  }
 
   // MembershipFactory?
   @OnEvent("station.TokenFactory.ERC20Created")

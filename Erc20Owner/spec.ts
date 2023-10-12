@@ -53,15 +53,12 @@ class Erc20Owner extends LiveObject {
 
     // Instantiate new class instance to reference.
     const erc20Owner = this.new(Erc20Owner, {
-      contractAddress: this.tokenContractAddress,
+      tokenContractAddress: this.tokenContractAddress,
       ownerAddress,
     });
 
     // Load in existing property values if the record exists.
-    const exists = await erc20Owner.load();
-    if (!exists) {
-      erc20Owner.balance = BigInt.from(0);
-    }
+    await erc20Owner.load();
 
     // Update balance.
     erc20Owner.balance = erc20Owner.balance.plus(value);
