@@ -1,0 +1,12 @@
+{
+  "namespace": "station",
+  "name": "Erc1155Owner",
+  "version": "0.0.1",
+  "displayName": "Station ERC1155 Owner",
+  "description": "Ownership over an ERC1155 token on Station.",
+  "chains": [
+    1,
+    5,
+    137
+  ]
+}
