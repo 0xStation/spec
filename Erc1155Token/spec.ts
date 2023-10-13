@@ -24,7 +24,9 @@ class Erc1155Token extends LiveObject {
   tokenId: BigInt;
 
   // ==== Event Handlers ===================
-
+  // empty -- should just upsert
+  // todo: maybe check if it's a transfer from 0 address?
+  // if so, save, otherwise ignore? Is that possible in Spec?
   @OnEvent("station.ERC1155.Transfer")
   onTransfer(event: Event) {
     this.tokenContractAddress = event.origin.contractAddress;
