@@ -8,6 +8,7 @@ import {
   BigInt,
   isNullAddress,
   saveAll,
+  BeforeAll,
 } from "@spec.dev/core";
 
 /**
@@ -29,43 +30,80 @@ class Erc1155Owner extends LiveObject {
   @Property()
   ownerAddress: Address;
 
-  // ==== Event Handlers ===================
+  // How many erc1155 for a given tokenId this owner has.
+  @Property()
+  balance: BigInt;
 
-  @OnEvent("station.ERC1155.Transfer")
-  async onTransfer(event: Event) {
+  @BeforeAll()
+  setCommonProperties(event: Event) {
     this.tokenContractAddress = event.origin.contractAddress;
-    this.tokenId = BigInt.from(event.data.tokenId);
+  }
 
+  // ==== Event Handlers ===================
+  @OnEvent("station.ERC1155.TransferSingle")
+  async onTransferSingle(event: Event) {
+    const tokenId = BigInt.from(event.data.id);
     const value = BigInt.from(event.data.value);
 
     const updatedBalances = (
-      await Promise.all([
-        this._applyAmountToBalance(event.data.to, value),
-        this._applyAmountToBalance(event.data.from, value.times(-1)),
-      ])
+      await this._registerTransfer(
+        event.data.from,
+        event.data.to,
+        value,
+        tokenId
+      )
     ).filter((v) => !!v);
 
     await saveAll(...updatedBalances);
   }
 
-  async _applyAmountToBalance(
-    ownerAddress: Address,
-    value: BigInt
-  ): Promise<Erc1155Owner | null> {
-    if (isNullAddress(ownerAddress)) return null;
+  @OnEvent("station.ERC1155.TransferBatch")
+  async onTransferBatch(event: Event) {
+    const ids = event.data.ids;
+    const values = event.data.values;
 
-    // Instantiate new class instance to reference.
-    const erc1155Owner = this.new(Erc1155Owner, {
+    const objectsToSave = [];
+    for (let i = 0; i < ids.length; i++) {
+      const id = BigInt.from(ids[i]);
+      const value = BigInt.from(values[i]);
+
+      const updatedBalances = (
+        await this._registerTransfer(event.data.from, event.data.to, value, id)
+      ).filter((v) => !!v);
+
+      objectsToSave.push(...updatedBalances);
+    }
+
+    await saveAll(...objectsToSave);
+  }
+
+  async _registerTransfer(
+    from: Address,
+    to: Address,
+    value: BigInt,
+    tokenId: BigInt
+  ): Promise<Erc1155Owner[] | null> {
+    if (isNullAddress(to)) return null;
+
+    const erc1155OwnerTo = this.new(Erc1155Owner, {
       tokenContractAddress: this.tokenContractAddress,
-      ownerAddress,
+      ownerAddress: to,
+      tokenId,
     });
 
-    // Load in existing property values if the record exists.
-    await erc1155Owner.load();
+    await erc1155OwnerTo.load();
+    erc1155OwnerTo.balance = erc1155OwnerTo.balance.plus(value);
 
-    // Update balance.
-    erc1155Owner.balance = erc1155Owner.balance.plus(value);
-    return erc1155Owner;
+    const erc1155OwnerFrom = this.new(Erc1155Owner, {
+      tokenContractAddress: this.tokenContractAddress,
+      ownerAddress: from,
+      tokenId,
+    });
+
+    await erc1155OwnerFrom.load();
+    erc1155OwnerFrom.balance = erc1155OwnerFrom.balance.minus(value);
+
+    return [erc1155OwnerTo, erc1155OwnerFrom];
   }
 }
 
