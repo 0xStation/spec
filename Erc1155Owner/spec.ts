@@ -46,12 +46,10 @@ class Erc1155Owner extends LiveObject {
     const value = BigInt.from(event.data.value);
 
     const updatedBalances = (
-      await this._registerTransfer(
-        event.data.from,
-        event.data.to,
-        value,
-        tokenId
-      )
+      await Promise.all([
+        this._applyAmountToBalance(event.data.to, tokenId, value),
+        this._applyAmountToBalance(event.data.from, tokenId, value.times(-1)),
+      ])
     ).filter((v) => !!v);
 
     await saveAll(...updatedBalances);
@@ -68,7 +66,10 @@ class Erc1155Owner extends LiveObject {
       const value = BigInt.from(values[i]);
 
       const updatedBalances = (
-        await this._registerTransfer(event.data.from, event.data.to, value, id)
+        await Promise.all([
+          this._applyAmountToBalance(event.data.to, id, value),
+          this._applyAmountToBalance(event.data.from, id, value.times(-1)),
+        ])
       ).filter((v) => !!v);
 
       objectsToSave.push(...updatedBalances);
@@ -77,33 +78,23 @@ class Erc1155Owner extends LiveObject {
     await saveAll(...objectsToSave);
   }
 
-  async _registerTransfer(
-    from: Address,
-    to: Address,
+  async _applyAmountToBalance(
+    ownerAddress: Address,
+    tokenId: BigInt,
     value: BigInt,
-    tokenId: BigInt
-  ): Promise<Erc1155Owner[] | null> {
-    if (isNullAddress(to)) return null;
+  ): Promise<Erc1155Owner | null> {
+    if (isNullAddress(ownerAddress)) return null;
 
-    const erc1155OwnerTo = this.new(Erc1155Owner, {
+    const erc1155Owner = this.new(Erc1155Owner, {
       tokenContractAddress: this.tokenContractAddress,
-      ownerAddress: to,
+      ownerAddress,
       tokenId,
     });
 
-    await erc1155OwnerTo.load();
-    erc1155OwnerTo.balance = erc1155OwnerTo.balance.plus(value);
+    await erc1155Owner.load();
+    erc1155Owner.balance = erc1155Owner.balance.plus(value);
 
-    const erc1155OwnerFrom = this.new(Erc1155Owner, {
-      tokenContractAddress: this.tokenContractAddress,
-      ownerAddress: from,
-      tokenId,
-    });
-
-    await erc1155OwnerFrom.load();
-    erc1155OwnerFrom.balance = erc1155OwnerFrom.balance.minus(value);
-
-    return [erc1155OwnerTo, erc1155OwnerFrom];
+    return erc1155Owner;
   }
 }
 
