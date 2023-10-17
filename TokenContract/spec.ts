@@ -20,28 +20,32 @@ class TokenContract extends LiveObject {
   @Property()
   contractAddress: Address;
 
+  // The "type" of token contract.
+  @Property()
+  tokenStandard: string;
+
   // ==== Event Handlers ===================
 
   @BeforeAll()
   setCommonProperties(event: Event) {
-    this.contractAddress = event.data.token
+    this.contractAddress = event.data.token;
   }
 
-  // MembershipFactory?
   @OnEvent("station.TokenFactory.ERC20Created")
   onErc20Created(event: Event) {
+    this.tokenStandard = "ERC20";
     this.addContractToGroup(event.data.token, "station.ERC20");
   }
 
-  // MembershipFactory?
   @OnEvent("station.TokenFactory.ERC721Created")
   onErc721Created(event: Event) {
+    this.tokenStandard = "ERC721";
     this.addContractToGroup(event.data.token, "station.ERC721");
   }
 
-  // MembershipFactory?
   @OnEvent("station.TokenFactory.ERC1155Created")
   onErc1155Created(event: Event) {
+    this.tokenStandard = "ERC1155";
     this.addContractToGroup(event.data.token, "station.ERC1155");
   }
 }
