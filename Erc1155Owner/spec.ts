@@ -40,7 +40,7 @@ class Erc1155Owner extends LiveObject {
   }
 
   // ==== Event Handlers ===================
-  @OnEvent("station.ERC1155.TransferSingle")
+  @OnEvent("station.ERC1155.TransferSingle", { autoSave: false })
   async onTransferSingle(event: Event) {
     const tokenId = BigInt.from(event.data.id);
     const value = BigInt.from(event.data.value);
@@ -55,7 +55,7 @@ class Erc1155Owner extends LiveObject {
     await saveAll(...updatedBalances);
   }
 
-  @OnEvent("station.ERC1155.TransferBatch")
+  @OnEvent("station.ERC1155.TransferBatch", { autoSave: false })
   async onTransferBatch(event: Event) {
     const ids = event.data.ids;
     const values = event.data.values;

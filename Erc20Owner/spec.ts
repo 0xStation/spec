@@ -30,7 +30,7 @@ class Erc20Owner extends LiveObject {
   balance: BigInt;
 
   // ==== Event Handlers ===================
-  @OnEvent("station.ERC20.Transfer")
+  @OnEvent("station.ERC20.Transfer", { autoSave: false })
   async onTransfer(event: Event) {
     this.tokenContractAddress = event.origin.contractAddress;
     const value = BigInt.from(event.data.value);

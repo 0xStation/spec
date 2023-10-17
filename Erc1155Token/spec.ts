@@ -31,12 +31,13 @@ class Erc1155Token extends LiveObject {
   }
 
   // ==== Event Handlers ===================
+  
   @OnEvent("station.ERC1155.TransferSingle")
   onTransferSingle(event: Event) {
     this.tokenId = BigInt.from(event.data.id);
   }
 
-  @OnEvent("station.ERC1155.TransferBatch")
+  @OnEvent("station.ERC1155.TransferBatch", { autoSave: false })
   async onTransferBatch(event: Event) {
     const ids = event.data.ids;
 
