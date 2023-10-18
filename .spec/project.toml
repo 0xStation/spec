@@ -6,6 +6,21 @@ id = 'station.Membership@0.0.1'
 [objects.PointsBalance]
 id = 'station.PointsBalance@0.0.1'
 
+[objects.TokenContract]
+id = 'station.TokenContract@0.0.1'
+
+[objects.Erc20Owner]
+id = 'station.Erc20Owner@0.0.1'
+
+[objects.Erc721Token]
+id = 'station.Erc721Token@0.0.1'
+
+[objects.Erc1155Token]
+id = 'station.Erc1155Token@0.0.1'
+
+[objects.Erc1155Owner]
+id = 'station.Erc1155Owner@0.0.1'
+
 # = Live Columns (Outputs) ------------------------------
 
 [tables.public.Membership]
@@ -26,6 +41,45 @@ balance = 'PointsBalance.balance'
 blockNumber = 'PointsBalance.blockNumber'
 updatedAt = 'PointsBalance.blockTimestamp'
 
+[tables.public.TokenContract]
+chainId = 'TokenContract.chainId'
+contractAddress = 'TokenContract.contractAddress'
+tokenStandard = 'TokenContract.tokenStandard'
+updatedAt = 'TokenContract.blockTimestamp'
+blockNumber = 'TokenContract.blockNumber'
+
+[tables.public.Erc20Owner]
+chainId = 'Erc20Owner.chainId'
+tokenContractAddress = 'Erc20Owner.tokenContractAddress'
+ownerAddress = 'Erc20Owner.ownerAddress'
+balance = 'Erc20Owner.balance'
+updatedAt = 'Erc20Owner.blockTimestamp'
+blockNumber = 'Erc20Owner.blockNumber'
+
+[tables.public.Erc721Token]
+chainId = 'Erc721Token.chainId'
+tokenContractAddress = 'Erc721Token.tokenContractAddress'
+tokenId = 'Erc721Token.tokenId'
+ownerAddress = 'Erc721Token.ownerAddress'
+updatedAt = 'Erc721Token.blockTimestamp'
+blockNumber = 'Erc721Token.blockNumber'
+
+[tables.public.Erc1155Token]
+chainId = 'Erc1155Token.chainId'
+tokenContractAddress = 'Erc1155Token.tokenContractAddress'
+tokenId = 'Erc1155Token.tokenId'
+updatedAt = 'Erc1155Token.blockTimestamp'
+blockNumber = 'Erc1155Token.blockNumber'
+
+[tables.public.Erc1155Owner]
+chainId = 'Erc1155Owner.chainId'
+tokenContractAddress = 'Erc1155Owner.tokenContractAddress'
+tokenId = 'Erc1155Owner.tokenId'
+ownerAddress = 'Erc1155Owner.ownerAddress'
+balance = 'Erc1155Owner.balance'
+updatedAt = 'Erc1155Owner.blockTimestamp'
+blockNumber = 'Erc1155Owner.blockNumber'
+
 # = Links & Filters --------------------------------------
 
 [[objects.Membership.links]]
@@ -36,7 +90,42 @@ uniqueBy = [ 'contractAddress', 'tokenId', 'chainId' ]
 table = 'public.PointsBalance'
 uniqueBy = [ 'contractAddress', 'ownerAddress', 'chainId' ]
 
+[[objects.TokenContract.links]]
+table = 'public.TokenContract'
+uniqueBy = [ 'chainId', 'contractAddress' ]
+
+[[objects.Erc20Owner.links]]
+table = 'public.Erc20Owner'
+uniqueBy = [ 'chainId', 'tokenContractAddress', 'ownerAddress' ]
+
+[[objects.Erc721Token.links]]
+table = 'public.Erc721Token'
+uniqueBy = [ 'chainId', 'tokenContractAddress', 'tokenId' ]
+
+[[objects.Erc1155Token.links]]
+table = 'public.Erc1155Token'
+uniqueBy = [ 'chainId', 'tokenContractAddress', 'tokenId' ]
+
+[[objects.Erc1155Owner.links]]
+table = 'public.Erc1155Owner'
+uniqueBy = [ 'chainId', 'tokenContractAddress', 'tokenId', 'ownerAddress' ]
+
 # = Defaults ----------------------------------------------
 
 [defaults.public.PointsBalance]
+id = 'uuid()'
+
+[defaults.public.TokenContract]
+id = 'uuid()'
+
+[defaults.public.Erc20Owner]
+id = 'uuid()'
+
+[defaults.public.Erc721Token]
+id = 'uuid()'
+
+[defaults.public.Erc1155Token]
+id = 'uuid()'
+
+[defaults.public.Erc1155Owner]
 id = 'uuid()'
