@@ -6,14 +6,14 @@ import {
   OnEvent,
   Address,
   BigInt,
-  save,
+  saveAll,
 } from "@spec.dev/core";
 
 /**
  * An token Permit on Station.
  */
 @Spec({
-  uniqueBy: ["chainId", "signerAddress", "nonce"],
+  uniqueBy: ["chainId", "moduleAddress", "signerAddress", "nonce"],
 })
 class Permit extends LiveObject {
   @Property()
@@ -26,6 +26,7 @@ class Permit extends LiveObject {
   @OnEvent("station.Modules.NonceUsed", { autoSave: false })
   async onNonceUsed(event: Event) {
     const existingPermit = this.new(Permit, {
+      moduleAddress: event.origin.contractAddress,
       signerAddress: event.data.account,
       nonce: event.data.nonce,
     });
@@ -33,7 +34,7 @@ class Permit extends LiveObject {
     await existingPermit.load();
     existingPermit.used = true;
 
-    await save(existingPermit);
+    await saveAll(existingPermit);
   }
 }
 
