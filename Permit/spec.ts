@@ -23,7 +23,7 @@ class Permit extends LiveObject {
   nonce: BigInt;
 
   // ==== Event Handlers ===================
-  @OnEvent("station.ERC1155.NonceUsed", { autoSave: false })
+  @OnEvent("station.Modules.NonceUsed", { autoSave: false })
   async onNonceUsed(event: Event) {
     const existingPermit = this.new(Permit, {
       signerAddress: event.data.account,
