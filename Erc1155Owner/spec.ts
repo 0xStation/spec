@@ -81,7 +81,7 @@ class Erc1155Owner extends LiveObject {
   async _applyAmountToBalance(
     ownerAddress: Address,
     tokenId: BigInt,
-    value: BigInt,
+    value: BigInt
   ): Promise<Erc1155Owner | null> {
     if (isNullAddress(ownerAddress)) return null;
 
