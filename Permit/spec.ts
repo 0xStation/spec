@@ -20,10 +20,16 @@ class Permit extends LiveObject {
   signerAddress: Address;
 
   @Property()
+  moduleAddress: Address;
+
+  @Property()
   nonce: BigInt;
 
+  @Property()
+  used: boolean;
+
   // ==== Event Handlers ===================
-  @OnEvent("station.Modules.NonceUsed", { autoSave: false })
+  @OnEvent("station.GeneralFreeMintController.NonceUsed", { autoSave: false })
   async onNonceUsed(event: Event) {
     const existingPermit = this.new(Permit, {
       moduleAddress: event.origin.contractAddress,
