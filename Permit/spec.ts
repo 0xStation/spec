@@ -6,7 +6,6 @@ import {
   OnEvent,
   Address,
   BigInt,
-  saveAll,
 } from "@spec.dev/core";
 
 /**
@@ -29,18 +28,13 @@ class Permit extends LiveObject {
   used: boolean;
 
   // ==== Event Handlers ===================
-  @OnEvent("station.GeneralFreeMintController.NonceUsed", { autoSave: false })
-  async onNonceUsed(event: Event) {
-    const existingPermit = this.new(Permit, {
-      moduleAddress: event.origin.contractAddress,
-      signerAddress: event.data.account,
-      nonce: event.data.nonce,
-    });
 
-    await existingPermit.load();
-    existingPermit.used = true;
-
-    await saveAll(existingPermit);
+  @OnEvent("station.GeneralFreeMintController.NonceUsed")
+  onNonceUsed(event: Event) {
+    this.moduleAddress = event.origin.contractAddress;
+    this.signerAddress = event.data.account;
+    this.nonce = BigInt.from(event.data.nonce);
+    this.used = true;
   }
 }
 
