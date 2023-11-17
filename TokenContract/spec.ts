@@ -61,6 +61,7 @@ class TokenContract extends LiveObject {
   @OnEvent("station.ERC721.NameUpdated")
   @OnEvent("station.ERC1155.NameUpdated")
   onNameUpdated(event: Event) {
+    // how do I map `this` to the token contract that matches the (chainId, contractAddress) uniqueBy with the event.origin?
     this.name = event.data.name;
   }
   
@@ -68,6 +69,7 @@ class TokenContract extends LiveObject {
   @OnEvent("station.ERC721.SymbolUpdated")
   @OnEvent("station.ERC1155.SymbolUpdated")
   onSymbolUpdated(event: Event) {
+    // how do I map `this` to the token contract that matches the (chainId, contractAddress) uniqueBy with the event.origin?
     this.symbol = event.data.symbol;
   }
   
