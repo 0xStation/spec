@@ -20,9 +20,17 @@ class TokenContract extends LiveObject {
   @Property()
   contractAddress: Address;
 
-  // The "type" of token contract.
+  // The ERC standard of token contract. One of "ERC20", "ERC721", or "ERC1155".
   @Property()
   tokenStandard: string;
+  
+  // The name of token contract.
+  @Property()
+  name: string;
+  
+  // The symbol of token contract.
+  @Property()
+  symbol: string;
 
   // ==== Event Handlers ===================
 
@@ -48,6 +56,21 @@ class TokenContract extends LiveObject {
     this.tokenStandard = "ERC1155";
     this.addContractToGroup(event.data.token, "station.ERC1155");
   }
+
+  @OnEvent("station.ERC20.NameUpdated")
+  @OnEvent("station.ERC721.NameUpdated")
+  @OnEvent("station.ERC1155.NameUpdated")
+  onNameUpdated(event: Event) {
+    this.name = event.data.name;
+  }
+  
+  @OnEvent("station.ERC20.SymbolUpdated")
+  @OnEvent("station.ERC721.SymbolUpdated")
+  @OnEvent("station.ERC1155.SymbolUpdated")
+  onSymbolUpdated(event: Event) {
+    this.symbol = event.data.symbol;
+  }
+  
 }
 
 export default TokenContract;
