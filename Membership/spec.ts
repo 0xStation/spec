@@ -1,5 +1,5 @@
 import {
-  LiveObject,
+  LiveTable,
   Spec,
   Property,
   Event,
@@ -18,7 +18,7 @@ import { REGISTRY_IMPLEMENTATION } from "./constants.ts"
 @Spec({
   uniqueBy: ["contractAddress", "tokenId", "chainId"],
 })
-class Membership extends LiveObject {
+class Membership extends LiveTable {
   // The membership contract.
   @Property()
   contractAddress: Address

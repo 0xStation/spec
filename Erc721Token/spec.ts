@@ -1,5 +1,5 @@
 import {
-  LiveObject,
+  LiveTable,
   Spec,
   Property,
   Event,
@@ -14,7 +14,7 @@ import {
 @Spec({
   uniqueBy: ["tokenContractAddress", "tokenId", "chainId"],
 })
-class Erc721Token extends LiveObject {
+class Erc721Token extends LiveTable {
   // The 721 contract.
   @Property()
   tokenContractAddress: Address;
