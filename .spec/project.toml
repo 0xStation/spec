@@ -63,6 +63,8 @@ tokenId = 'Erc721Token.tokenId'
 ownerAddress = 'Erc721Token.ownerAddress'
 updatedAt = 'Erc721Token.blockTimestamp'
 blockNumber = 'Erc721Token.blockNumber'
+mintedAt = 'Erc721Token.mintedAt'
+primaryTbaAddress = 'Erc721Token.stationTbaAddress'
 
 [tables.public.Erc1155Token]
 chainId = 'Erc1155Token.chainId'
