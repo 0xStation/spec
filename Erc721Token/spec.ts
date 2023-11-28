@@ -10,7 +10,11 @@ import {
   isNullAddress,
   ERC6551Registry,
 } from "@spec.dev/core";
-import * from "./constants.ts"
+import {
+  ERC6551_REGISTRY,
+  ERC6551_ACCOUNT_PROXY,
+  STATION_ACCOUNT_SALT,
+} from "./constants.ts"
 
 /**
  * An ERC721 Token on Station.
@@ -31,15 +35,17 @@ class Erc721Token extends LiveTable {
   @Property()
   ownerAddress: Address;
 
+  // When the token was minted.
   @Property()
   mintedAt: Timestamp;
 
+  // Address of token-bound account.
   @Property()
   stationTbaAddress: Address;
 
   // ==== Event Handlers ===================
   @OnEvent("station.ERC721.Transfer")
-  onTransfer(event: Event) {
+  async onTransfer(event: Event) {
     this.tokenContractAddress = event.origin.contractAddress;
     this.tokenId = BigInt.from(event.data.tokenId);
     this.ownerAddress = event.data.to;
@@ -57,7 +63,7 @@ class Erc721Token extends LiveTable {
       ERC6551_ACCOUNT_PROXY,
       STATION_ACCOUNT_SALT,
       this.chainId,
-      this.contractAddress,
+      this.tokenContractAddress,
       this.tokenId
     )
   }
