@@ -30,6 +30,7 @@ class Erc20Owner extends LiveTable {
   balance: BigInt;
 
   // ==== Event Handlers ===================
+
   @OnEvent("station.ERC20.Transfer", { autoSave: false })
   async onTransfer(event: Event) {
     this.tokenContractAddress = event.origin.contractAddress;

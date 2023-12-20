@@ -3,10 +3,5 @@
     "name": "PointsBalance",
     "version": "0.0.1",
     "displayName": "Station Points Balances",
-    "description": "A modular ERC20 value system on Station.",
-    "chains": [
-        1,
-        5,
-        137
-    ]
-}p
+    "description": "A modular ERC20 value system on Station."
+}

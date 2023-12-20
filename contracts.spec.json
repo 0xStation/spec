@@ -1,0 +1,159 @@
+{
+  "namespace": "station",
+  "groups": [
+    {
+      "name": "Membership",
+      "abi": "abis/Membership.json",
+      "isFactoryGroup": true
+    },
+    {
+      "name": "ERC721",
+      "abi": "abis/ERC721.json",
+      "isFactoryGroup": true
+    },
+    {
+      "name": "ERC20",
+      "abi": "abis/ERC20.json",
+      "isFactoryGroup": true
+    },
+    {
+      "name": "ERC1155",
+      "abi": "abis/ERC1155.json",
+      "isFactoryGroup": true
+    },
+    {
+      "name": "TokenFactory",
+      "abi": "abis/TokenFactory.json",
+      "contracts": [
+        {
+          "chainId": 10,
+          "address": "0x2c333bd1316ce1af9ebf017a595d6f8ab5f6bd1a"
+        },
+        {
+          "chainId": 1,
+          "address": "0x2c333bd1316ce1af9ebf017a595d6f8ab5f6bd1a"
+        },
+        {
+          "chainId": 5,
+          "address": "0x2c333bd1316ce1af9ebf017a595d6f8ab5f6bd1a"
+        },
+        {
+          "chainId": 5,
+          "address": "0xda32efd5a06a220707f7406e57056f97684ea405"
+        },
+        {
+          "chainId": 5,
+          "address": "0x66b28cc146a1a2cdf1073c2875d070733c7d01af"
+        },
+        {
+          "chainId": 137,
+          "address": "0xc59eaff8ffed977f02361dd99329a2217aafc0e6"
+        },
+        {
+          "chainId": 5,
+          "address": "0xc59eaff8ffed977f02361dd99329a2217aafc0e6"
+        },
+        {
+          "chainId": 1,
+          "address": "0xc59eaff8ffed977f02361dd99329a2217aafc0e6"
+        }
+      ]
+    },
+    {
+      "name": "MembershipFactory",
+      "abi": "abis/MembershipFactory.json",
+      "contracts": [
+        {
+          "chainId": 137,
+          "address": "0xc59eaff8ffed977f02361dd99329a2217aafc0e6"
+        },
+        {
+          "chainId": 5,
+          "address": "0xc59eaff8ffed977f02361dd99329a2217aafc0e6"
+        },
+        {
+          "chainId": 1,
+          "address": "0xc59eaff8ffed977f02361dd99329a2217aafc0e6"
+        },
+        {
+          "chainId": 5,
+          "address": "0x666260835741238f4d39509c3ea5b9b6a3c4ff9d"
+        },
+        {
+          "chainId": 137,
+          "address": "0x666260835741238f4d39509c3ea5b9b6a3c4ff9d"
+        },
+        {
+          "chainId": 137,
+          "address": "0x0a16ae1c053152500fb74f7adedcda1a3f9baa9f"
+        },
+        {
+          "chainId": 5,
+          "address": "0x08300cfdcf6dd1a6870fc2b1594804c0be8076ec"
+        },
+        {
+          "chainId": 5,
+          "address": "0xb2fd44331bceea25fafaec1ea9816c2f1e584b3a"
+        }
+      ]
+    },
+    {
+      "name": "GeneralFreeMintController",
+      "abi": "abis/GeneralFreeMintController.json",
+      "contracts": [
+        {
+          "chainId": 10,
+          "address": "0x1bceecf6938f5dbcb551f526ad4a3f592ba15732"
+        },
+        {
+          "chainId": 5,
+          "address": "0x1bceecf6938f5dbcb551f526ad4a3f592ba15732"
+        },
+        {
+          "chainId": 1,
+          "address": "0x1bceecf6938f5dbcb551f526ad4a3f592ba15732"
+        },
+        {
+          "chainId": 5,
+          "address": "0x067ef1a8e8d79e55b94d9c8096ffb927108a53b3"
+        },
+        {
+          "chainId": 5,
+          "address": "0x6ef1766b2f56fd3b9417f6aa3da13efffe3572a8"
+        }
+      ]
+    },
+    {
+      "name": "ParallelProcessor",
+      "abi": "abis/ParallelProcessor.json",
+      "contracts": [
+        {
+          "chainId": 137,
+          "address": "0x17b67e5bdfcf5df34711d151da3422821bed2ae6"
+        },
+        {
+          "chainId": 1,
+          "address": "0x17b67e5bdfcf5df34711d151da3422821bed2ae6"
+        },
+        {
+          "chainId": 5,
+          "address": "0x17b67e5bdfcf5df34711d151da3422821bed2ae6"
+        }
+      ]
+    },
+    {
+      "name": "Points",
+      "abi": "abis/Points.json",
+      "contracts": [
+        {
+          "chainId": 5,
+          "address": "0xff71afac1ad4d1144626e79649c141f9806c4698"
+        },
+        {
+          "chainId": 5,
+          "address": "0xff71afac1ad4d1144626e79649c141f9806c4698"
+        }
+      ]
+    }
+  ]
+}

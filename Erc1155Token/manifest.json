@@ -3,11 +3,5 @@
   "name": "Erc1155Token",
   "version": "0.0.1",
   "displayName": "Station ERC1155 Token",
-  "description": "ERC1155 token on Station.",
-  "chains": [
-    1,
-    5,
-    10,
-    137
-  ]
+  "description": "ERC1155 token on Station."
 }

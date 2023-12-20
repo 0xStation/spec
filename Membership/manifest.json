@@ -3,10 +3,5 @@
     "name": "Membership",
     "version": "0.0.1",
     "displayName": "Station Memberships",
-    "description": " A Membership NFT on Station.",
-    "chains": [
-        1,
-        5,
-        137
-    ]
+    "description": " A Membership NFT on Station."
 }
