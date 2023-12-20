@@ -13,7 +13,7 @@ id = 'station.TokenContract@0.0.1'
 id = 'station.Erc20Owner@0.0.1'
 
 [objects.Erc721Token]
-id = 'station.Erc721Token@0.0.1'
+id = 'station.Erc721Token@0.0.2'
 
 [objects.Erc1155Token]
 id = 'station.Erc1155Token@0.0.1'
