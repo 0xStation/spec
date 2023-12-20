@@ -7,7 +7,7 @@ id = 'station.Membership@0.0.1'
 id = 'station.PointsBalance@0.0.1'
 
 [objects.TokenContract]
-id = 'station.TokenContract@0.0.1'
+id = 'station.TokenContract@0.0.2'
 
 [objects.Erc20Owner]
 id = 'station.Erc20Owner@0.0.1'

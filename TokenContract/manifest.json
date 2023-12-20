@@ -1,7 +1,7 @@
 {
   "namespace": "station",
   "name": "TokenContract",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "displayName": "Token contract",
   "description": "A contract deployed on Station's 0xRails framework.",
   "chains": [
