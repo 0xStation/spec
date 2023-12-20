@@ -3,11 +3,5 @@
   "name": "Erc20Owner",
   "version": "0.0.1",
   "displayName": "Station ERC20 Owner",
-  "description": "Ownership over ERC20 tokens on Station.",
-  "chains": [
-    1,
-    5,
-    10,
-    137
-  ]
+  "description": "Ownership over ERC20 tokens on Station."
 }

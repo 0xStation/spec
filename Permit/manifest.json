@@ -3,10 +3,5 @@
   "name": "Permit",
   "version": "0.0.1",
   "displayName": "Station Token Permit",
-  "description": "Permits to claim tokens.",
-  "chains": [
-    1,
-    5,
-    137
-  ]
+  "description": "Permits to claim tokens."
 }

@@ -3,10 +3,5 @@
   "name": "TokenOperator",
   "version": "0.0.1",
   "displayName": "Station Token Operators",
-  "description": "A token operator is an address who has some level of permissions on a Station created token collection.",
-  "chains": [
-      1,
-      5,
-      137
-  ]
+  "description": "A token operator is an address who has some level of permissions on a Station created token collection."
 }
