@@ -3,27 +3,22 @@
   "groups": [
     {
       "name": "Membership",
-      "abi": "abis/Membership.json",
       "isFactoryGroup": true
     },
     {
       "name": "ERC721",
-      "abi": "abis/ERC721.json",
       "isFactoryGroup": true
     },
     {
       "name": "ERC20",
-      "abi": "abis/ERC20.json",
       "isFactoryGroup": true
     },
     {
       "name": "ERC1155",
-      "abi": "abis/ERC1155.json",
       "isFactoryGroup": true
     },
     {
       "name": "TokenFactory",
-      "abi": "abis/TokenFactory.json",
       "contracts": [
         {
           "chainId": 10,
@@ -61,7 +56,6 @@
     },
     {
       "name": "MembershipFactory",
-      "abi": "abis/MembershipFactory.json",
       "contracts": [
         {
           "chainId": 137,
@@ -99,7 +93,6 @@
     },
     {
       "name": "GeneralFreeMintController",
-      "abi": "abis/GeneralFreeMintController.json",
       "contracts": [
         {
           "chainId": 10,
@@ -125,7 +118,6 @@
     },
     {
       "name": "ParallelProcessor",
-      "abi": "abis/ParallelProcessor.json",
       "contracts": [
         {
           "chainId": 137,
@@ -143,7 +135,6 @@
     },
     {
       "name": "Points",
-      "abi": "abis/Points.json",
       "contracts": [
         {
           "chainId": 5,
