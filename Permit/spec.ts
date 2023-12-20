@@ -1,5 +1,5 @@
 import {
-  LiveObject,
+  LiveTable,
   Spec,
   Property,
   Event,
@@ -14,7 +14,7 @@ import {
 @Spec({
   uniqueBy: ["chainId", "moduleAddress", "signerAddress", "nonce"],
 })
-class Permit extends LiveObject {
+class Permit extends LiveTable {
   @Property()
   signerAddress: Address;
 

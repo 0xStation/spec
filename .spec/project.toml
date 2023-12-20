@@ -13,7 +13,7 @@ id = 'station.TokenContract@0.0.1'
 id = 'station.Erc20Owner@0.0.1'
 
 [objects.Erc721Token]
-id = 'station.Erc721Token@0.0.1'
+id = 'station.Erc721Token@0.0.2'
 
 [objects.Erc1155Token]
 id = 'station.Erc1155Token@0.0.1'
@@ -63,6 +63,8 @@ tokenId = 'Erc721Token.tokenId'
 ownerAddress = 'Erc721Token.ownerAddress'
 updatedAt = 'Erc721Token.blockTimestamp'
 blockNumber = 'Erc721Token.blockNumber'
+mintedAt = 'Erc721Token.mintedAt'
+primaryTbaAddress = 'Erc721Token.stationTbaAddress'
 
 [tables.public.Erc1155Token]
 chainId = 'Erc1155Token.chainId'
