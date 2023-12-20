@@ -1,0 +1,344 @@
+[
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_metadataRouter",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor",
+        "signature": "0x88495b5f"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+            }
+        ],
+        "name": "NonceAlreadyUsed",
+        "type": "error"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+            }
+        ],
+        "name": "NonceUsed",
+        "type": "event",
+        "signature": "0x2af71f10069c28afc67c3752e87e0e4616a97948d33c8f404a856c0c334b3e01"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "collection",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "bool",
+                "name": "enablePermits",
+                "type": "bool"
+            }
+        ],
+        "name": "SetUp",
+        "type": "event",
+        "signature": "0xf25f03b11d84c634fc32c6b7c00ccfe960aa79696a38c99f71265b12c6803d32"
+    },
+    {
+        "inputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "address",
+                        "name": "signer",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "sender",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint48",
+                        "name": "expiration",
+                        "type": "uint48"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "nonce",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "bytes",
+                        "name": "data",
+                        "type": "bytes"
+                    },
+                    {
+                        "internalType": "bytes",
+                        "name": "signature",
+                        "type": "bytes"
+                    }
+                ],
+                "internalType": "struct PermitController.Permit",
+                "name": "permit",
+                "type": "tuple"
+            }
+        ],
+        "name": "callWithPermit",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function",
+        "signature": "0x00bb0d21"
+    },
+    {
+        "inputs": [],
+        "name": "contractURI",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "uri",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0xe8a3d485"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+            }
+        ],
+        "name": "isNonceUsed",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0xcab7e8eb"
+    },
+    {
+        "inputs": [],
+        "name": "metadataRouter",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0xc8cf3c87"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "collection",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "recipient",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "mintToERC1155",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function",
+        "signature": "0x4ce99637"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "collection",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "recipient",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "mintToERC20",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function",
+        "signature": "0xf8893ad9"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "collection",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "recipient",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "mintToERC721",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function",
+        "signature": "0x661b2e9b"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes",
+                "name": "context",
+                "type": "bytes"
+            }
+        ],
+        "name": "requirePermits",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0xde3cd025"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "collection",
+                "type": "address"
+            },
+            {
+                "internalType": "bool",
+                "name": "enablePermits",
+                "type": "bool"
+            }
+        ],
+        "name": "setUpPermits",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0x290e85f6"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bool",
+                "name": "enablePermits",
+                "type": "bool"
+            }
+        ],
+        "name": "setUpPermits",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0x45ae3a0f"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "signer",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes",
+                "name": "context",
+                "type": "bytes"
+            }
+        ],
+        "name": "signerCanPermit",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0x96488015"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes[]",
+                "name": "data",
+                "type": "bytes[]"
+            }
+        ],
+        "name": "multicall",
+        "outputs": [
+            {
+                "internalType": "bytes[]",
+                "name": "results",
+                "type": "bytes[]"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0xac9650d8"
+    }
+]
